@@ -61,14 +61,14 @@ script2Accessory.prototype.getState = function(callback) {
   
   if (this.fileState) {
     var flagFile = fileExists.sync(this.fileState);
-    accessory.log('State of ' + accessory.name + ' is: ' + flagFile);
+    //accessory.log('State of ' + accessory.name + ' is: ' + flagFile);
     callback(null, flagFile);
   }
   else if (this.stateCommand) {
     exec(this.stateCommand, function (error, stdout, stderr) {
       if (stderr) { return; }
       var cleanOut=stdout.trim().toLowerCase();
-      accessory.log('State of ' + accessory.name + ' is: ' + cleanOut);
+      //accessory.log('State of ' + accessory.name + ' is: ' + cleanOut);
       callback(null, cleanOut == accessory.onValue);
     });
   }
