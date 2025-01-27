@@ -1,6 +1,6 @@
 {
   "name": "homebridge-script3",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "license": "MIT",
   "description": "script plugin for homebridge - fork of homebridge-script2",
   "keywords": [
