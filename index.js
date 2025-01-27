@@ -9,14 +9,14 @@ var chokidar = require('chokidar');
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory('homebridge-script2', 'Script2', script2Accessory);
+  homebridge.registerAccessory('homebridge-script3', 'Script3', script3Accessory);
 }
 
 function puts(error, stdout, stderr) {
    console.log(stdout)
 }
 
-function script2Accessory(log, config) {
+function script3Accessory(log, config) {
   this.log = log;
   this.service = 'Switch';
 
@@ -29,12 +29,12 @@ function script2Accessory(log, config) {
   if (!this.fileState) {
     this.onValue = this.onValue.trim().toLowerCase();
   }
-  this.uniqueSerial = config['unique_serial'] || "script2 Serial Number";
+  this.uniqueSerial = config['unique_serial'] || "script3 Serial Number";
   //this.exactMatch = config['exact_match'] || true;
 }
 
 /* 
-  script2Accessory.prototype.matchesString = function(match) {
+  script3Accessory.prototype.matchesString = function(match) {
   if(this.exactMatch) {
     return (match === this.onValue);
   }
@@ -44,7 +44,7 @@ function script2Accessory(log, config) {
 }
 */
 
-script2Accessory.prototype.setState = function(powerOn, callback) {
+script3Accessory.prototype.setState = function(powerOn, callback) {
   var accessory = this;
   var state = powerOn ? 'on' : 'off';
   var prop = state + 'Command';
@@ -56,7 +56,7 @@ script2Accessory.prototype.setState = function(powerOn, callback) {
     callback(null);
 }
 
-script2Accessory.prototype.getState = function(callback) {
+script3Accessory.prototype.getState = function(callback) {
   var accessory = this;
   
   if (this.fileState) {
@@ -77,14 +77,14 @@ script2Accessory.prototype.getState = function(callback) {
   }
 }
 
-script2Accessory.prototype.getServices = function() {
+script3Accessory.prototype.getServices = function() {
   var informationService = new Service.AccessoryInformation();
   var switchService = new Service.Switch(this.name);
   var theSerial = this.uniqueSerial.toString();
 
   informationService
-  .setCharacteristic(Characteristic.Manufacturer, 'script2 Manufacturer')
-  .setCharacteristic(Characteristic.Model, 'script2 Model')
+  .setCharacteristic(Characteristic.Manufacturer, 'script3 Manufacturer')
+  .setCharacteristic(Characteristic.Model, 'script3 Model')
   .setCharacteristic(Characteristic.SerialNumber, theSerial);
 
   var characteristic = switchService.getCharacteristic(Characteristic.On)
